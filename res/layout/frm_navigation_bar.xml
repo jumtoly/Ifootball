@@ -6,14 +6,14 @@
     <LinearLayout style="@style/NavigationBarItem" >
 
         <View
-            android:id="@+id/navigation_bar_item_home_line"
+            android:id="@+id/navigation_bar_item_stand_line"
             style="@style/NavigationBarItemLine" />
 
         <Button
-            android:id="@+id/navigation_bar_item_home"
+            android:id="@+id/navigation_bar_item_stand"
             style="@style/NavigationBarItemValue"
-            android:drawableTop="@drawable/navigation_bar_home"
-            android:text="@string/navigation_bar_home" />
+            android:drawableTop="@drawable/navigation_bar_stand"
+            android:text="@string/navigation_bar_stand" />
     </LinearLayout>
 
     <!-- <View style="@style/NavigationBarItemSeparateLine" /> -->
@@ -21,14 +21,14 @@
     <LinearLayout style="@style/NavigationBarItem" >
 
         <View
-            android:id="@+id/navigation_bar_item_category_line"
+            android:id="@+id/navigation_bar_item_green_line"
             style="@style/NavigationBarItemLine" />
 
         <Button
-            android:id="@+id/navigation_bar_item_category"
+            android:id="@+id/navigation_bar_item_green"
             style="@style/NavigationBarItemValue"
-            android:drawableTop="@drawable/navigation_bar_category"
-            android:text="@string/navigation_bar_category" />
+            android:drawableTop="@drawable/navigation_bar_green"
+            android:text="@string/navigation_bar_green" />
     </LinearLayout>
 
     <!-- <View style="@style/NavigationBarItemSeparateLine" /> -->
@@ -36,14 +36,14 @@
     <LinearLayout style="@style/NavigationBarItem" >
 
         <View
-            android:id="@+id/navigation_bar_item_search_line"
+            android:id="@+id/navigation_bar_item_found_line"
             style="@style/NavigationBarItemLine" />
 
         <Button
-            android:id="@+id/navigation_bar_item_search"
+            android:id="@+id/navigation_bar_item_found"
             style="@style/NavigationBarItemValue"
-            android:drawableTop="@drawable/navigation_bar_search"
-            android:text="@string/navigation_bar_search" />
+            android:drawableTop="@drawable/navigation_bar_found"
+            android:text="@string/navigation_bar_found" />
     </LinearLayout>
 
     <!-- <View style="@style/NavigationBarItemSeparateLine" /> -->
@@ -51,7 +51,7 @@
     <LinearLayout style="@style/NavigationBarItem" >
 
         <View
-            android:id="@+id/navigation_bar_item_cart_line"
+            android:id="@+id/navigation_bar_item_career_line"
             style="@style/NavigationBarItemLine" />
 
         <FrameLayout
@@ -60,38 +60,23 @@
             android:gravity="center" >
 
             <Button
-                android:id="@+id/navigation_bar_item_cart"
+                android:id="@+id/navigation_bar_item_career"
                 style="@style/NavigationBarItemValue"
-                android:drawableTop="@drawable/navigation_bar_cart"
-                android:text="@string/navigation_bar_cart" />
+                android:drawableTop="@drawable/navigation_bar_career"
+                android:text="@string/navigation_bar_career" />
 
             <TextView
                 android:id="@+id/cart_items_count_textview"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="right|top"
-                android:layout_marginRight="9dp"
+                android:layout_marginRight="25dp"
                 android:layout_marginTop="3dp"
                 android:background="@drawable/navigation_bar_cartnumber_bg"
                 android:gravity="center"
                 android:textColor="@color/red"
                 android:textSize="12sp" />
         </FrameLayout>
-    </LinearLayout>
-
-    <!-- <View style="@style/NavigationBarItemSeparateLine" /> -->
-
-    <LinearLayout style="@style/NavigationBarItem" >
-
-        <View
-            android:id="@+id/navigation_bar_item_more_line"
-            style="@style/NavigationBarItemLine" />
-
-        <Button
-            android:id="@+id/navigation_bar_item_more"
-            style="@style/NavigationBarItemValue"
-            android:drawableTop="@drawable/navigation_bar_more"
-            android:text="@string/navigation_bar_more" />
     </LinearLayout>
 
 </LinearLayout>

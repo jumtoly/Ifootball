@@ -1,10 +1,15 @@
 package com.ifootball.app;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
+import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
@@ -12,7 +17,10 @@ import com.ifootball.app.framework.widget.CustomTitleManager;
 import com.ifootball.app.framework.widget.NavigationHelper;
 import com.ifootball.app.util.DialogUtil;
 import com.ifootball.app.util.IntentUtil;
+import com.ifootball.app.util.SystemBarTintManager;
+import com.ifootball.app.util.UnitConverter;
 import com.ifootball.app.util.VersionUtil;
+import com.myifootball.app.R;
 
 /**
  * This Class include Title Bar ,Navigation Bar and some other Broadcast
@@ -38,6 +46,44 @@ public class BaseActivity extends Activity {
 
 		/*mCartNumberChangedBroadcastReceiver = mNavigationHelper
 				.getCartItemsCountChangedReceiver();*/
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+
+			setTranslucentStatus(true);
+			SystemBarTintManager tintManager = new SystemBarTintManager(this);
+			tintManager.setStatusBarTintEnabled(true);
+			tintManager.setStatusBarTintResource(R.color.top_bar_bg);//通知栏所需颜色
+			//			View childAt = ((ViewGroup) this.findViewById(android.R.id.content))
+			//					.getChildAt(0);
+			View view = getWindow().getDecorView().findViewById(
+					android.R.id.content);
+			int statusBarHeight = getStatusBarHeight();
+			view.setPadding(0, statusBarHeight, 0, 0);
+
+		}
+
+	}
+
+	public int getStatusBarHeight() {
+		int result = 0;
+		int resourceId = getResources().getIdentifier("status_bar_height",
+				"dimen", "android");
+		if (resourceId > 0) {
+			result = getResources().getDimensionPixelSize(resourceId);
+		}
+		return result;
+	}
+
+	@TargetApi(19)
+	private void setTranslucentStatus(boolean on) {
+		Window win = getWindow();
+		WindowManager.LayoutParams winParams = win.getAttributes();
+		final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+		if (on) {
+			winParams.flags |= bits;
+		} else {
+			winParams.flags &= ~bits;
+		}
+		win.setAttributes(winParams);
 	}
 
 	/**

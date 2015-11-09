@@ -34,11 +34,10 @@ public class NavigationHelper {
 	private int mItemLinePressedColor;;
 	private int mItemLineDefaultColor;
 
-	private Button mHomeActionView;
-	private Button mSearchActionView;
-	private Button mCategoryActionView;
-	private Button mCartActionView;
-	private Button mMoreActionView;
+	private Button mStandActionView;
+	private Button mGreenActionView;
+	private Button mfoundActionView;
+	private Button mCareerActionView;
 
 	private Button mPreviousSelectedActionView;
 
@@ -104,34 +103,29 @@ public class NavigationHelper {
 		mItemLineDefaultColor = mActivity.getResources().getColor(
 				R.color.navigation_bar_line);
 
-		mHomeActionView = (Button) mActivity
-				.findViewById(R.id.navigation_bar_item_home);
-		mSearchActionView = (Button) mActivity
-				.findViewById(R.id.navigation_bar_item_search);
-		mCategoryActionView = (Button) mActivity
-				.findViewById(R.id.navigation_bar_item_category);
-		mCartActionView = (Button) mActivity
-				.findViewById(R.id.navigation_bar_item_cart);
-		mMoreActionView = (Button) mActivity
-				.findViewById(R.id.navigation_bar_item_more);
+		mStandActionView = (Button) mActivity
+				.findViewById(R.id.navigation_bar_item_stand);
+		mGreenActionView = (Button) mActivity
+				.findViewById(R.id.navigation_bar_item_green);
+		mfoundActionView = (Button) mActivity
+				.findViewById(R.id.navigation_bar_item_found);
+		mCareerActionView = (Button) mActivity
+				.findViewById(R.id.navigation_bar_item_career);
 
 		ActionEventResponser actionEventResponser = new ActionEventResponser(
 				mActivity);
 
-		if (mHomeActionView != null) {
-			mHomeActionView.setOnClickListener(actionEventResponser);
+		if (mStandActionView != null) {
+			mStandActionView.setOnClickListener(actionEventResponser);
 		}
-		if (mSearchActionView != null) {
-			mSearchActionView.setOnClickListener(actionEventResponser);
+		if (mGreenActionView != null) {
+			mGreenActionView.setOnClickListener(actionEventResponser);
 		}
-		if (mCategoryActionView != null) {
-			mCategoryActionView.setOnClickListener(actionEventResponser);
+		if (mfoundActionView != null) {
+			mfoundActionView.setOnClickListener(actionEventResponser);
 		}
-		if (mCartActionView != null) {
-			mCartActionView.setOnClickListener(actionEventResponser);
-		}
-		if (mMoreActionView != null) {
-			mMoreActionView.setOnClickListener(actionEventResponser);
+		if (mCareerActionView != null) {
+			mCareerActionView.setOnClickListener(actionEventResponser);
 		}
 	}
 
@@ -151,53 +145,43 @@ public class NavigationHelper {
 
 		case HOME:
 
-			mActivity.findViewById(R.id.navigation_bar_item_home_line)
+			mActivity.findViewById(R.id.navigation_bar_item_stand_line)
 					.setBackgroundColor(mItemLinePressedColor);
 
-			mHomeActionView.setCompoundDrawablesWithIntrinsicBounds(0,
+			mStandActionView.setCompoundDrawablesWithIntrinsicBounds(0,
 					R.drawable.tab_home02, 0, 0);
-			mHomeActionView.setTextColor(mItemTextPressedColor);
-			mHomeActionView.setClickable(false);
+			mStandActionView.setTextColor(mItemTextPressedColor);
+			mStandActionView.setClickable(false);
 			break;
 		case SEARCH:
 
-			mActivity.findViewById(R.id.navigation_bar_item_search_line)
+			mActivity.findViewById(R.id.navigation_bar_item_green_line)
 					.setBackgroundColor(mItemLinePressedColor);
 
-			mSearchActionView.setCompoundDrawablesWithIntrinsicBounds(0,
+			mGreenActionView.setCompoundDrawablesWithIntrinsicBounds(0,
 					R.drawable.tab_search02, 0, 0);
-			mSearchActionView.setTextColor(mItemTextPressedColor);
-			mSearchActionView.setClickable(false);
+			mGreenActionView.setTextColor(mItemTextPressedColor);
+			mGreenActionView.setClickable(false);
 			break;
 		case CATEGORY:
 
-			mActivity.findViewById(R.id.navigation_bar_item_category_line)
+			mActivity.findViewById(R.id.navigation_bar_item_found_line)
 					.setBackgroundColor(mItemLinePressedColor);
 
-			mCategoryActionView.setCompoundDrawablesWithIntrinsicBounds(0,
+			mfoundActionView.setCompoundDrawablesWithIntrinsicBounds(0,
 					R.drawable.tab_category02, 0, 0);
-			mCategoryActionView.setTextColor(mItemTextPressedColor);
-			mCategoryActionView.setClickable(false);
+			mfoundActionView.setTextColor(mItemTextPressedColor);
+			mfoundActionView.setClickable(false);
 			break;
 		case CART:
 
-			mActivity.findViewById(R.id.navigation_bar_item_cart_line)
+			mActivity.findViewById(R.id.navigation_bar_item_career_line)
 					.setBackgroundColor(mItemLinePressedColor);
 
-			mCartActionView.setCompoundDrawablesWithIntrinsicBounds(0,
+			mCareerActionView.setCompoundDrawablesWithIntrinsicBounds(0,
 					R.drawable.tab_cart02, 0, 0);
-			mCartActionView.setTextColor(mItemTextPressedColor);
-			mCartActionView.setClickable(false);
-			break;
-		case MORE:
-
-			mActivity.findViewById(R.id.navigation_bar_item_more_line)
-					.setBackgroundColor(mItemLinePressedColor);
-
-			mMoreActionView.setCompoundDrawablesWithIntrinsicBounds(0,
-					R.drawable.tab_account02, 0, 0);
-			mMoreActionView.setTextColor(mItemTextPressedColor);
-			mMoreActionView.setClickable(false);
+			mCareerActionView.setTextColor(mItemTextPressedColor);
+			mCareerActionView.setClickable(false);
 			break;
 		default:
 			break;
@@ -210,8 +194,8 @@ public class NavigationHelper {
 
 			switch (mPreviousSelectedActionView.getId()) {
 
-			case R.id.navigation_bar_item_home:
-				mActivity.findViewById(R.id.navigation_bar_item_home_line)
+			case R.id.navigation_bar_item_stand:
+				mActivity.findViewById(R.id.navigation_bar_item_stand_line)
 						.setBackgroundColor(mItemLineDefaultColor);
 
 				mPreviousSelectedActionView
@@ -220,8 +204,8 @@ public class NavigationHelper {
 				mPreviousSelectedActionView.setTextColor(mItemTextColor);
 				break;
 
-			case R.id.navigation_bar_item_search:
-				mActivity.findViewById(R.id.navigation_bar_item_search_line)
+			case R.id.navigation_bar_item_green:
+				mActivity.findViewById(R.id.navigation_bar_item_green_line)
 						.setBackgroundColor(mItemLineDefaultColor);
 
 				mPreviousSelectedActionView
@@ -230,8 +214,8 @@ public class NavigationHelper {
 				mPreviousSelectedActionView.setTextColor(mItemTextColor);
 
 				break;
-			case R.id.navigation_bar_item_category:
-				mActivity.findViewById(R.id.navigation_bar_item_category_line)
+			case R.id.navigation_bar_item_found:
+				mActivity.findViewById(R.id.navigation_bar_item_found_line)
 						.setBackgroundColor(mItemLineDefaultColor);
 
 				mPreviousSelectedActionView
@@ -240,23 +224,13 @@ public class NavigationHelper {
 				mPreviousSelectedActionView.setTextColor(mItemTextColor);
 
 				break;
-			case R.id.navigation_bar_item_cart:
-				mActivity.findViewById(R.id.navigation_bar_item_cart_line)
+			case R.id.navigation_bar_item_career:
+				mActivity.findViewById(R.id.navigation_bar_item_career_line)
 						.setBackgroundColor(mItemLineDefaultColor);
 
 				mPreviousSelectedActionView
 						.setCompoundDrawablesWithIntrinsicBounds(0,
 								R.drawable.tab_cart01, 0, 0);
-				mPreviousSelectedActionView.setTextColor(mItemTextColor);
-
-				break;
-			case R.id.navigation_bar_item_more:
-				mActivity.findViewById(R.id.navigation_bar_item_more_line)
-						.setBackgroundColor(mItemLineDefaultColor);
-
-				mPreviousSelectedActionView
-						.setCompoundDrawablesWithIntrinsicBounds(0,
-								R.drawable.tab_account01, 0, 0);
 				mPreviousSelectedActionView.setTextColor(mItemTextColor);
 
 				break;
@@ -282,25 +256,21 @@ public class NavigationHelper {
 
 			switch (v.getId()) {
 
-			case R.id.navigation_bar_item_home:
+			case R.id.navigation_bar_item_stand:
 
 				//				redirect(HomeActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION, 0, 0);
 				break;
-			case R.id.navigation_bar_item_search:
+			case R.id.navigation_bar_item_green:
 
 				//				redirect(SearchActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION, 0, 0);	
 				break;
-			case R.id.navigation_bar_item_category:
+			case R.id.navigation_bar_item_found:
 
 				//				redirect(CategoryActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION, 0, 0);				
 				break;
-			case R.id.navigation_bar_item_cart:
+			case R.id.navigation_bar_item_career:
 
 				//				redirect(CartActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION, 0, 0);			
-				break;
-			case R.id.navigation_bar_item_more:
-
-				//				redirect(MyAccountActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION, 0, 0);	
 				break;
 			}
 		}

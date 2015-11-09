@@ -19,11 +19,10 @@
     <string name="checkupdate_process_title">检查更新中...</string>
 
     <!-- bottom navigation bar -->
-    <string name="navigation_bar_home">首页</string>
-    <string name="navigation_bar_search">搜索</string>
-    <string name="navigation_bar_category">分类</string>
-    <string name="navigation_bar_cart">购物车</string>
-    <string name="navigation_bar_more">帐户</string>
+    <string name="navigation_bar_stand">看台</string>
+    <string name="navigation_bar_found">发现</string>
+    <string name="navigation_bar_green">绿茵</string>
+    <string name="navigation_bar_career">生涯</string>
     <string name="errcode_success">分享成功</string>
     <string name="errcode_cancel">分享取消</string>
     <string name="errcode_deny">分享被拒绝</string>
