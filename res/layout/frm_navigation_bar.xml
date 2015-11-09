@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/navigation_bar_container"
+    style="@style/NavigationBar" >
+
+    <LinearLayout style="@style/NavigationBarItem" >
+
+        <View
+            android:id="@+id/navigation_bar_item_home_line"
+            style="@style/NavigationBarItemLine" />
+
+        <Button
+            android:id="@+id/navigation_bar_item_home"
+            style="@style/NavigationBarItemValue"
+            android:drawableTop="@drawable/navigation_bar_home"
+            android:text="@string/navigation_bar_home" />
+    </LinearLayout>
+
+    <!-- <View style="@style/NavigationBarItemSeparateLine" /> -->
+
+    <LinearLayout style="@style/NavigationBarItem" >
+
+        <View
+            android:id="@+id/navigation_bar_item_category_line"
+            style="@style/NavigationBarItemLine" />
+
+        <Button
+            android:id="@+id/navigation_bar_item_category"
+            style="@style/NavigationBarItemValue"
+            android:drawableTop="@drawable/navigation_bar_category"
+            android:text="@string/navigation_bar_category" />
+    </LinearLayout>
+
+    <!-- <View style="@style/NavigationBarItemSeparateLine" /> -->
+
+    <LinearLayout style="@style/NavigationBarItem" >
+
+        <View
+            android:id="@+id/navigation_bar_item_search_line"
+            style="@style/NavigationBarItemLine" />
+
+        <Button
+            android:id="@+id/navigation_bar_item_search"
+            style="@style/NavigationBarItemValue"
+            android:drawableTop="@drawable/navigation_bar_search"
+            android:text="@string/navigation_bar_search" />
+    </LinearLayout>
+
+    <!-- <View style="@style/NavigationBarItemSeparateLine" /> -->
+
+    <LinearLayout style="@style/NavigationBarItem" >
+
+        <View
+            android:id="@+id/navigation_bar_item_cart_line"
+            style="@style/NavigationBarItemLine" />
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/navigation_bar_item_cart"
+                style="@style/NavigationBarItemValue"
+                android:drawableTop="@drawable/navigation_bar_cart"
+                android:text="@string/navigation_bar_cart" />
+
+            <TextView
+                android:id="@+id/cart_items_count_textview"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="right|top"
+                android:layout_marginRight="9dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/navigation_bar_cartnumber_bg"
+                android:gravity="center"
+                android:textColor="@color/red"
+                android:textSize="12sp" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- <View style="@style/NavigationBarItemSeparateLine" /> -->
+
+    <LinearLayout style="@style/NavigationBarItem" >
+
+        <View
+            android:id="@+id/navigation_bar_item_more_line"
+            style="@style/NavigationBarItemLine" />
+
+        <Button
+            android:id="@+id/navigation_bar_item_more"
+            style="@style/NavigationBarItemValue"
+            android:drawableTop="@drawable/navigation_bar_more"
+            android:text="@string/navigation_bar_more" />
+    </LinearLayout>
+
+</LinearLayout>
