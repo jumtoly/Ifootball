@@ -1,4 +1,4 @@
-package com.ifootball.app.activity.home;
+package com.ifootball.app.activity.stand;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import com.ifootball.app.util.IntentUtil;
 import com.ifootball.app.util.VersionUtil;
 import com.myifootball.app.R;
 
-public class HomeStartActivity extends Activity {
+public class StartActivity extends Activity {
 	private CountDownTimerUtil mCountDownTimerUtil;
 	private static final String FRIST_START_KEY = "FRIST_START";
 
@@ -41,11 +41,11 @@ public class HomeStartActivity extends Activity {
 						if (MySharedCache.get(FRIST_START_KEY, true)) {
 							MySharedCache.put(FRIST_START_KEY, false);
 							IntentUtil.redirectToNextActivity(
-									HomeStartActivity.this,
+									StartActivity.this,
 									FirstStartAppActivity.class);
 						} else {
 							IntentUtil.redirectToNextActivity(
-									HomeStartActivity.this, HomeActivity.class);
+									StartActivity.this, StandActivity.class);
 						}
 						finish();
 					}

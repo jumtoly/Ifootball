@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.ifootball.app.activity.career.CareerActivity;
 import com.ifootball.app.activity.found.FoundActivity;
 import com.ifootball.app.activity.green.GreenActivity;
-import com.ifootball.app.activity.home.HomeActivity;
+import com.ifootball.app.activity.stand.StandActivity;
 import com.myifootball.app.R;
 
 public class NavigationHelper {
@@ -260,7 +260,7 @@ public class NavigationHelper {
 			switch (v.getId()) {
 
 			case R.id.navigation_bar_item_stand:
-				redirect(HomeActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION,
+				redirect(StandActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION,
 						0, 0);
 				break;
 			case R.id.navigation_bar_item_green:

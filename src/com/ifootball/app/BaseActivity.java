@@ -1,12 +1,11 @@
 package com.ifootball.app;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.KeyEvent;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -26,7 +25,7 @@ import com.myifootball.app.R;
  * Receiver components.
  * 
  */
-public class BaseActivity extends Activity {
+public class BaseActivity extends FragmentActivity {
 
 	private CustomTitleManager mCustomTitleManager;
 	private NavigationHelper mNavigationHelper;
@@ -102,7 +101,8 @@ public class BaseActivity extends Activity {
 	 *            NavigationHelper.MORE
 	 * 
 	 */
-	public void putContentView(int layoutId, String pageTitle, int tab) {
+	public void putContentView(int layoutId, String pageTitle, int tab,
+			boolean isSetBar) {
 
 		Boolean noTitle = pageTitle == null || pageTitle.equals("");
 		mCustomTitleManager = new CustomTitleManager(this, noTitle);
@@ -121,7 +121,10 @@ public class BaseActivity extends Activity {
 
 			unregisterReceiver();
 		}
-		setSystemBar();
+		if (isSetBar) {
+			setSystemBar();
+		}
+
 	}
 
 	/**
@@ -158,9 +161,9 @@ public class BaseActivity extends Activity {
 		}
 	}
 
-	public void putContentView(int layoutId, String pageTitle) {
+	public void putContentView(int layoutId, String pageTitle, boolean isSetBar) {
 
-		putContentView(layoutId, pageTitle, NavigationHelper.DEFAULT);
+		putContentView(layoutId, pageTitle, NavigationHelper.DEFAULT, isSetBar);
 	}
 
 	public void putContentView(int layoutId, int pageTitle) {

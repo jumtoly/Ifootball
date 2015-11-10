@@ -1,4 +1,4 @@
-package com.ifootball.app.activity.home;
+package com.ifootball.app.activity.stand;
 
 import android.app.Activity;
 import android.content.Context;
@@ -47,7 +47,7 @@ public class FirstStartAppActivity extends Activity {
 				if (arg0 == 0 && isRedirect
 						&& mViewPager.getCurrentItem() == (images.length - 1)) {
 					IntentUtil.redirectToNextActivity(
-							FirstStartAppActivity.this, HomeActivity.class);
+							FirstStartAppActivity.this, StandActivity.class);
 					FirstStartAppActivity.this.finish();
 				}
 				if (arg0 == 0
@@ -119,7 +119,7 @@ public class FirstStartAppActivity extends Activity {
 					@Override
 					public void onClick(View v) {
 						IntentUtil.redirectToNextActivity(
-								FirstStartAppActivity.this, HomeActivity.class);
+								FirstStartAppActivity.this, StandActivity.class);
 						FirstStartAppActivity.this.finish();
 					}
 				});

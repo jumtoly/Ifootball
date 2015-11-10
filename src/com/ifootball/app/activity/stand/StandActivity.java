@@ -1,8 +1,15 @@
-package com.ifootball.app.activity.home;
+package com.ifootball.app.activity.stand;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
@@ -13,16 +20,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.ifootball.app.BaseActivity;
-import com.ifootball.app.framework.cache.MyCache;
 import com.ifootball.app.framework.widget.NavigationHelper;
 import com.myifootball.app.R;
 
-public class HomeActivity extends BaseActivity implements OnClickListener,
+public class StandActivity extends BaseActivity implements OnClickListener,
 		OnPageChangeListener {
-	private static final int ROSTRUM = 10;
-	private static final int NEARBY = 11;
-	private static final int NEWS = 12;
-	private static final int BEST_HEAT = 13;
+	private static final int ROSTRUM = 0;
+	private static final int NEARBY = 1;
+	private static final int NEWS = 2;
+	private static final int BEST_HEAT = 3;
 	private ViewPager contentViewPager;
 	private Button rostrumBtn;
 	private Button nearbyBtn;
@@ -33,12 +39,31 @@ public class HomeActivity extends BaseActivity implements OnClickListener,
 	private ImageView nearbyImg;
 	private ImageView newsImg;
 	private ImageView bestHeatImg;
+	private List<Fragment> listViews;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		putContentView(R.layout.activity_home, "", NavigationHelper.STAND);
+		putContentView(R.layout.activity_home, "", NavigationHelper.STAND, true);
 		findview();
+		initManager(savedInstanceState);
+		inteViewPager();
+	}
+
+	private void initManager(Bundle savedInstanceState) {
+
+	}
+
+	private void inteViewPager() {
+		listViews = new ArrayList<Fragment>();
+		listViews.add(new StandRostrumActivity());
+		listViews.add(new StandNearByActivity());
+		listViews.add(new StandNewsActivity());
+		listViews.add(new StandBestHeatByActivity());
+		contentViewPager.setAdapter(new HomeViewPagerAdapter(
+				getSupportFragmentManager(), listViews));
+		setSelectBar(ROSTRUM);
+
 	}
 
 	private void findview() {
@@ -60,7 +85,7 @@ public class HomeActivity extends BaseActivity implements OnClickListener,
 		bestHeatBtn.setOnClickListener(this);
 		standPlusBtn.setOnClickListener(this);
 		contentViewPager.addOnPageChangeListener(this);
-		setSelectBar(ROSTRUM);
+
 	}
 
 	private void setSelectBar(int index) {
@@ -70,21 +95,25 @@ public class HomeActivity extends BaseActivity implements OnClickListener,
 			rostrumBtn.getPaint().setFakeBoldText(true);
 			rostrumBtn.postInvalidate();
 			rostrumImg.setVisibility(View.VISIBLE);
+			contentViewPager.setCurrentItem(ROSTRUM);
 			break;
 		case NEARBY:
 			nearbyBtn.getPaint().setFakeBoldText(true);
 			nearbyBtn.postInvalidate();
 			nearbyImg.setVisibility(View.VISIBLE);
+			contentViewPager.setCurrentItem(NEARBY);
 			break;
 		case NEWS:
 			newsBtn.getPaint().setFakeBoldText(true);
 			newsBtn.postInvalidate();
 			newsImg.setVisibility(View.VISIBLE);
+			contentViewPager.setCurrentItem(NEWS);
 			break;
 		case BEST_HEAT:
 			bestHeatBtn.getPaint().setFakeBoldText(true);
 			bestHeatBtn.postInvalidate();
 			bestHeatImg.setVisibility(View.VISIBLE);
+			contentViewPager.setCurrentItem(BEST_HEAT);
 			break;
 
 		default:
@@ -176,13 +205,32 @@ public class HomeActivity extends BaseActivity implements OnClickListener,
 
 	@Override
 	public void onPageSelected(int arg0) {
-
+		setSelectBar(arg0);
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
 		contentViewPager.clearOnPageChangeListeners();
-		
+	}
+
+	class HomeViewPagerAdapter extends FragmentPagerAdapter {
+		List<Fragment> listViews = new ArrayList<Fragment>();
+
+		public HomeViewPagerAdapter(FragmentManager fm, List<Fragment> listViews) {
+			super(fm);
+			this.listViews = listViews;
+		}
+
+		@Override
+		public int getCount() {
+			return listViews.size();
+		}
+
+		@Override
+		public Fragment getItem(int arg0) {
+			return listViews.get(arg0);
+		}
+
 	}
 }
