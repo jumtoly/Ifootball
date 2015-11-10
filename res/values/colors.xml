@@ -11,7 +11,7 @@
     <color name="viewfinder_mask">#7F000000</color>
     <color name="transparent">#00000000</color>
     <color name="navigation_bar_background">#FFFFFF</color>
-    <color name="navigation_bar_item_text">#A3A3A3</color>
+    <color name="navigation_bar_item_text">#000000</color>
     <color name="navigation_bar_item_text_pressed">#E62043</color>
     <color name="navigation_bar_line">#C7C7C7</color>
     <color name="common_divider_gray">#E5E5E5</color>

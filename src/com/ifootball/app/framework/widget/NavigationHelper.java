@@ -8,15 +8,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.ifootball.app.activity.career.CareerActivity;
+import com.ifootball.app.activity.found.FoundActivity;
+import com.ifootball.app.activity.green.GreenActivity;
+import com.ifootball.app.activity.home.HomeActivity;
 import com.myifootball.app.R;
 
 public class NavigationHelper {
 
-	public static final int HOME = 10;
-	public static final int SEARCH = 11;
-	public static final int CATEGORY = 12;
-	public static final int CART = 13;
-	public static final int MORE = 14;
+	public static final int STAND = 10;
+	public static final int GREEN = 11;
+	public static final int FOUND = 12;
+	public static final int CAREER = 13;
 	/**
 	 * the page has navigation bar ,but no tab selected.
 	 */
@@ -143,43 +146,43 @@ public class NavigationHelper {
 
 		switch (tab) {
 
-		case HOME:
+		case STAND:
 
 			mActivity.findViewById(R.id.navigation_bar_item_stand_line)
 					.setBackgroundColor(mItemLinePressedColor);
 
 			mStandActionView.setCompoundDrawablesWithIntrinsicBounds(0,
-					R.drawable.tab_home02, 0, 0);
+					R.drawable.ico_mark1_on, 0, 0);
 			mStandActionView.setTextColor(mItemTextPressedColor);
 			mStandActionView.setClickable(false);
 			break;
-		case SEARCH:
+		case GREEN:
 
 			mActivity.findViewById(R.id.navigation_bar_item_green_line)
 					.setBackgroundColor(mItemLinePressedColor);
 
 			mGreenActionView.setCompoundDrawablesWithIntrinsicBounds(0,
-					R.drawable.tab_search02, 0, 0);
+					R.drawable.ico_mark2_on, 0, 0);
 			mGreenActionView.setTextColor(mItemTextPressedColor);
 			mGreenActionView.setClickable(false);
 			break;
-		case CATEGORY:
+		case FOUND:
 
 			mActivity.findViewById(R.id.navigation_bar_item_found_line)
 					.setBackgroundColor(mItemLinePressedColor);
 
 			mfoundActionView.setCompoundDrawablesWithIntrinsicBounds(0,
-					R.drawable.tab_category02, 0, 0);
+					R.drawable.ico_mark3_on, 0, 0);
 			mfoundActionView.setTextColor(mItemTextPressedColor);
 			mfoundActionView.setClickable(false);
 			break;
-		case CART:
+		case CAREER:
 
 			mActivity.findViewById(R.id.navigation_bar_item_career_line)
 					.setBackgroundColor(mItemLinePressedColor);
 
 			mCareerActionView.setCompoundDrawablesWithIntrinsicBounds(0,
-					R.drawable.tab_cart02, 0, 0);
+					R.drawable.ico_mark4_on, 0, 0);
 			mCareerActionView.setTextColor(mItemTextPressedColor);
 			mCareerActionView.setClickable(false);
 			break;
@@ -200,7 +203,7 @@ public class NavigationHelper {
 
 				mPreviousSelectedActionView
 						.setCompoundDrawablesWithIntrinsicBounds(0,
-								R.drawable.tab_home01, 0, 0);
+								R.drawable.ico_mark1, 0, 0);
 				mPreviousSelectedActionView.setTextColor(mItemTextColor);
 				break;
 
@@ -210,7 +213,7 @@ public class NavigationHelper {
 
 				mPreviousSelectedActionView
 						.setCompoundDrawablesWithIntrinsicBounds(0,
-								R.drawable.tab_search01, 0, 0);
+								R.drawable.ico_mark2, 0, 0);
 				mPreviousSelectedActionView.setTextColor(mItemTextColor);
 
 				break;
@@ -220,7 +223,7 @@ public class NavigationHelper {
 
 				mPreviousSelectedActionView
 						.setCompoundDrawablesWithIntrinsicBounds(0,
-								R.drawable.tab_category01, 0, 0);
+								R.drawable.ico_mark3, 0, 0);
 				mPreviousSelectedActionView.setTextColor(mItemTextColor);
 
 				break;
@@ -230,7 +233,7 @@ public class NavigationHelper {
 
 				mPreviousSelectedActionView
 						.setCompoundDrawablesWithIntrinsicBounds(0,
-								R.drawable.tab_cart01, 0, 0);
+								R.drawable.ico_mark4, 0, 0);
 				mPreviousSelectedActionView.setTextColor(mItemTextColor);
 
 				break;
@@ -257,20 +260,23 @@ public class NavigationHelper {
 			switch (v.getId()) {
 
 			case R.id.navigation_bar_item_stand:
-
-				//				redirect(HomeActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION, 0, 0);
+				redirect(HomeActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION,
+						0, 0);
 				break;
 			case R.id.navigation_bar_item_green:
 
-				//				redirect(SearchActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION, 0, 0);	
+				redirect(GreenActivity.class,
+						Intent.FLAG_ACTIVITY_NO_ANIMATION, 0, 0);
 				break;
 			case R.id.navigation_bar_item_found:
 
-				//				redirect(CategoryActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION, 0, 0);				
+				redirect(FoundActivity.class,
+						Intent.FLAG_ACTIVITY_NO_ANIMATION, 0, 0);
 				break;
 			case R.id.navigation_bar_item_career:
 
-				//				redirect(CartActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION, 0, 0);			
+				redirect(CareerActivity.class,
+						Intent.FLAG_ACTIVITY_NO_ANIMATION, 0, 0);
 				break;
 			}
 		}
@@ -295,6 +301,7 @@ public class NavigationHelper {
 			intent.setFlags(flags);
 			mActivity.startActivity(intent);
 			mActivity.overridePendingTransition(enterAnim, exitAnim);
+			mActivity.finish();
 		}
 	}
 }

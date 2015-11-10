@@ -4,9 +4,9 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
-import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -18,7 +18,6 @@ import com.ifootball.app.framework.widget.NavigationHelper;
 import com.ifootball.app.util.DialogUtil;
 import com.ifootball.app.util.IntentUtil;
 import com.ifootball.app.util.SystemBarTintManager;
-import com.ifootball.app.util.UnitConverter;
 import com.ifootball.app.util.VersionUtil;
 import com.myifootball.app.R;
 
@@ -44,8 +43,12 @@ public class BaseActivity extends Activity {
 
 		mNavigationHelper = new NavigationHelper(this);
 
-		/*mCartNumberChangedBroadcastReceiver = mNavigationHelper
-				.getCartItemsCountChangedReceiver();*/
+		mCartNumberChangedBroadcastReceiver = mNavigationHelper
+				.getCartItemsCountChangedReceiver();
+
+	}
+
+	private void setSystemBar() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 
 			setTranslucentStatus(true);
@@ -60,10 +63,9 @@ public class BaseActivity extends Activity {
 			view.setPadding(0, statusBarHeight, 0, 0);
 
 		}
-
 	}
 
-	public int getStatusBarHeight() {
+	private int getStatusBarHeight() {
 		int result = 0;
 		int resourceId = getResources().getIdentifier("status_bar_height",
 				"dimen", "android");
@@ -119,6 +121,7 @@ public class BaseActivity extends Activity {
 
 			unregisterReceiver();
 		}
+		setSystemBar();
 	}
 
 	/**

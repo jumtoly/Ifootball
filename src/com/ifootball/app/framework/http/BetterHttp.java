@@ -62,19 +62,24 @@ public class BetterHttp {
 		BasicHttpParams httpParams = new BasicHttpParams();
 
 		ConnManagerParams.setTimeout(httpParams, socketTimeout);
-		ConnManagerParams.setMaxConnectionsPerRoute(httpParams, new ConnPerRouteBean(maxConnections));
-		ConnManagerParams.setMaxTotalConnections(httpParams, DEFAULT_MAX_CONNECTIONS);
+		ConnManagerParams.setMaxConnectionsPerRoute(httpParams,
+				new ConnPerRouteBean(maxConnections));
+		ConnManagerParams.setMaxTotalConnections(httpParams,
+				DEFAULT_MAX_CONNECTIONS);
 		HttpConnectionParams.setSoTimeout(httpParams, socketTimeout);
 		HttpConnectionParams.setTcpNoDelay(httpParams, true);
-		HttpConnectionParams.setConnectionTimeout(httpParams, DEFAULT_CONNECTION_TIMEOUT);
+		HttpConnectionParams.setConnectionTimeout(httpParams,
+				DEFAULT_CONNECTION_TIMEOUT);
 		HttpProtocolParams.setVersion(httpParams, HttpVersion.HTTP_1_1);
 		HttpProtocolParams.setUserAgent(httpParams, httpUserAgent);
 
 		SchemeRegistry schemeRegistry = new SchemeRegistry();
-		schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
+		schemeRegistry.register(new Scheme("http", PlainSocketFactory
+				.getSocketFactory(), 80));
 
 		try {
-			KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
+			KeyStore trustStore = KeyStore.getInstance(KeyStore
+					.getDefaultType());
 			trustStore.load(null, null);
 
 			SSLSocketFactory sf = new MySSLSocketFactory(trustStore);
@@ -83,7 +88,8 @@ public class BetterHttp {
 		} catch (Exception e) {
 		}
 
-		ThreadSafeClientConnManager cm = new ThreadSafeClientConnManager(httpParams, schemeRegistry);
+		ThreadSafeClientConnManager cm = new ThreadSafeClientConnManager(
+				httpParams, schemeRegistry);
 		httpClient = new DefaultHttpClient(cm, httpParams);
 	}
 
@@ -110,6 +116,7 @@ public class BetterHttp {
 		if (appContext == null) {
 			return;
 		}
+
 		HttpParams httpParams = httpClient.getParams();
 		ConnectivityManager connectivity = (ConnectivityManager) appContext
 				.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -181,7 +188,8 @@ public class BetterHttp {
 	 */
 	public static void setSocketTimeout(int socketTimeout) {
 		BetterHttp.socketTimeout = socketTimeout;
-		HttpConnectionParams.setSoTimeout(httpClient.getParams(), socketTimeout);
+		HttpConnectionParams
+				.setSoTimeout(httpClient.getParams(), socketTimeout);
 	}
 
 	public static int getSocketTimeout() {
@@ -195,7 +203,7 @@ public class BetterHttp {
 	public static HashMap<String, String> getDefaultHeaders() {
 		return defaultHeaders;
 	}
-	
+
 	public static void clearCookie() {
 		httpClient.getCookieStore().clear();
 	}
@@ -205,12 +213,13 @@ public class BetterHttp {
 			return;
 		}
 		appContext = context.getApplicationContext();
-		appContext.registerReceiver(new ConnectionChangedBroadcastReceiver(), new IntentFilter(
-				ConnectivityManager.CONNECTIVITY_ACTION));
+		appContext.registerReceiver(new ConnectionChangedBroadcastReceiver(),
+				new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 	}
 
 	public static void setPortForScheme(String scheme, int port) {
-		Scheme _scheme = new Scheme(scheme, PlainSocketFactory.getSocketFactory(), port);
+		Scheme _scheme = new Scheme(scheme,
+				PlainSocketFactory.getSocketFactory(), port);
 		httpClient.getConnectionManager().getSchemeRegistry().register(_scheme);
 	}
 
@@ -239,14 +248,16 @@ public class BetterHttp {
 	 */
 	static class GZIPHttpResponseInterceptor implements HttpResponseInterceptor {
 		@Override
-		public void process(final HttpResponse response, final HttpContext context) {
+		public void process(final HttpResponse response,
+				final HttpContext context) {
 			// Inflate any responses compressed with gzip
 			final HttpEntity entity = response.getEntity();
 			final Header encoding = entity.getContentEncoding();
 			if (encoding != null) {
 				for (HeaderElement element : encoding.getElements()) {
 					if (element.getName().equalsIgnoreCase(ENCODING_GZIP)) {
-						response.setEntity(new GZIPInflatingEntity(response.getEntity()));
+						response.setEntity(new GZIPInflatingEntity(response
+								.getEntity()));
 						break;
 					}
 				}

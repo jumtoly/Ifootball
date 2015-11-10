@@ -1,0 +1,188 @@
+package com.ifootball.app.activity.home;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.animation.AnimationSet;
+import android.view.animation.RotateAnimation;
+import android.widget.Button;
+import android.widget.ImageView;
+
+import com.ifootball.app.BaseActivity;
+import com.ifootball.app.framework.cache.MyCache;
+import com.ifootball.app.framework.widget.NavigationHelper;
+import com.myifootball.app.R;
+
+public class HomeActivity extends BaseActivity implements OnClickListener,
+		OnPageChangeListener {
+	private static final int ROSTRUM = 10;
+	private static final int NEARBY = 11;
+	private static final int NEWS = 12;
+	private static final int BEST_HEAT = 13;
+	private ViewPager contentViewPager;
+	private Button rostrumBtn;
+	private Button nearbyBtn;
+	private Button newsBtn;
+	private Button bestHeatBtn;
+	private ImageView standPlusBtn;
+	private ImageView rostrumImg;
+	private ImageView nearbyImg;
+	private ImageView newsImg;
+	private ImageView bestHeatImg;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		putContentView(R.layout.activity_home, "", NavigationHelper.STAND);
+		findview();
+	}
+
+	private void findview() {
+		contentViewPager = (ViewPager) findViewById(R.id.home_content_viewpager);
+		rostrumBtn = (Button) findViewById(R.id.home_btn_rostrum);
+		nearbyBtn = (Button) findViewById(R.id.home_btn_nearby);
+		newsBtn = (Button) findViewById(R.id.home_btn_news);
+		bestHeatBtn = (Button) findViewById(R.id.home_btn_best_heat);
+		standPlusBtn = (ImageView) findViewById(R.id.home_btn_stand_plus);
+
+		rostrumImg = (ImageView) findViewById(R.id.home_btn_rostrum_line);
+		nearbyImg = (ImageView) findViewById(R.id.home_btn_nearby_line);
+		newsImg = (ImageView) findViewById(R.id.home_btn_news_line);
+		bestHeatImg = (ImageView) findViewById(R.id.home_btn_best_heat_line);
+
+		rostrumBtn.setOnClickListener(this);
+		nearbyBtn.setOnClickListener(this);
+		newsBtn.setOnClickListener(this);
+		bestHeatBtn.setOnClickListener(this);
+		standPlusBtn.setOnClickListener(this);
+		contentViewPager.addOnPageChangeListener(this);
+		setSelectBar(ROSTRUM);
+	}
+
+	private void setSelectBar(int index) {
+		restoreViewState();
+		switch (index) {
+		case ROSTRUM:
+			rostrumBtn.getPaint().setFakeBoldText(true);
+			rostrumBtn.postInvalidate();
+			rostrumImg.setVisibility(View.VISIBLE);
+			break;
+		case NEARBY:
+			nearbyBtn.getPaint().setFakeBoldText(true);
+			nearbyBtn.postInvalidate();
+			nearbyImg.setVisibility(View.VISIBLE);
+			break;
+		case NEWS:
+			newsBtn.getPaint().setFakeBoldText(true);
+			newsBtn.postInvalidate();
+			newsImg.setVisibility(View.VISIBLE);
+			break;
+		case BEST_HEAT:
+			bestHeatBtn.getPaint().setFakeBoldText(true);
+			bestHeatBtn.postInvalidate();
+			bestHeatImg.setVisibility(View.VISIBLE);
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	private void restoreViewState() {
+		rostrumBtn.getPaint().setFakeBoldText(false);
+		rostrumBtn.postInvalidate();
+		rostrumImg.setVisibility(View.GONE);
+
+		nearbyBtn.getPaint().setFakeBoldText(false);
+		nearbyBtn.postInvalidate();
+		nearbyImg.setVisibility(View.GONE);
+
+		newsBtn.getPaint().setFakeBoldText(false);
+		newsBtn.postInvalidate();
+		newsImg.setVisibility(View.GONE);
+
+		bestHeatBtn.getPaint().setFakeBoldText(false);
+		bestHeatBtn.postInvalidate();
+		bestHeatImg.setVisibility(View.GONE);
+
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.home_btn_rostrum:
+			setSelectBar(ROSTRUM);
+			break;
+		case R.id.home_btn_nearby:
+			setSelectBar(NEARBY);
+			break;
+		case R.id.home_btn_news:
+			setSelectBar(NEWS);
+			break;
+		case R.id.home_btn_best_heat:
+			setSelectBar(BEST_HEAT);
+			break;
+		case R.id.home_btn_stand_plus:
+			setPlusBtn();
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	private void setPlusBtn() {
+		standPlusBtn.clearAnimation();
+		AnimationSet animationSet = new AnimationSet(true);
+		RotateAnimation animation = new RotateAnimation(90, 180,
+				RotateAnimation.RELATIVE_TO_SELF, 0.5F,
+				RotateAnimation.RELATIVE_TO_SELF, 0.5F);
+		animation.setDuration(100);
+		animationSet.addAnimation(animation);
+		standPlusBtn.setAnimation(animation);
+		final CharSequence[] items = { "图片", "视频" };
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setItems(items, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int item) {
+				switch (item) {
+				case 0:
+					//TODO 图片activity
+					break;
+
+				case 1:
+					//TODO 视频activity
+					break;
+				}
+			}
+		});
+		AlertDialog alert = builder.create();
+		alert.show();
+
+	}
+
+	@Override
+	public void onPageScrollStateChanged(int arg0) {
+
+	}
+
+	@Override
+	public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+	}
+
+	@Override
+	public void onPageSelected(int arg0) {
+
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		contentViewPager.clearOnPageChangeListeners();
+		
+	}
+}
