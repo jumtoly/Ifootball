@@ -260,8 +260,8 @@ public class NavigationHelper {
 			switch (v.getId()) {
 
 			case R.id.navigation_bar_item_stand:
-				redirect(StandActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION,
-						0, 0);
+				redirect(StandActivity.class,
+						Intent.FLAG_ACTIVITY_NO_ANIMATION, 0, 0);
 				break;
 			case R.id.navigation_bar_item_green:
 
@@ -301,7 +301,7 @@ public class NavigationHelper {
 			intent.setFlags(flags);
 			mActivity.startActivity(intent);
 			mActivity.overridePendingTransition(enterAnim, exitAnim);
-			mActivity.finish();
+
 		}
 	}
 }

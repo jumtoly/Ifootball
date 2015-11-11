@@ -1,11 +1,14 @@
 package com.ifootball.app;
 
 import android.annotation.TargetApi;
+import android.app.ActivityManager;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,7 +17,9 @@ import android.widget.LinearLayout;
 
 import com.ifootball.app.framework.widget.CustomTitleManager;
 import com.ifootball.app.framework.widget.NavigationHelper;
+import com.ifootball.app.util.AppManager;
 import com.ifootball.app.util.DialogUtil;
+import com.ifootball.app.util.ExitAppUtil;
 import com.ifootball.app.util.IntentUtil;
 import com.ifootball.app.util.SystemBarTintManager;
 import com.ifootball.app.util.VersionUtil;
@@ -39,9 +44,8 @@ public class BaseActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-
+		AppManager.getAppManager().addActivity(this);
 		mNavigationHelper = new NavigationHelper(this);
-
 		mCartNumberChangedBroadcastReceiver = mNavigationHelper
 				.getCartItemsCountChangedReceiver();
 
@@ -294,5 +298,14 @@ public class BaseActivity extends FragmentActivity {
 			}
 		} catch (Exception e) {
 		}
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+			ExitAppUtil.exit(this);
+
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 }

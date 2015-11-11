@@ -5,7 +5,6 @@ import java.util.List;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,6 +20,7 @@ import android.widget.ImageView;
 
 import com.ifootball.app.BaseActivity;
 import com.ifootball.app.framework.widget.NavigationHelper;
+import com.ifootball.app.util.AppManager;
 import com.myifootball.app.R;
 
 public class StandActivity extends BaseActivity implements OnClickListener,
@@ -44,6 +44,7 @@ public class StandActivity extends BaseActivity implements OnClickListener,
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		putContentView(R.layout.activity_home, "", NavigationHelper.STAND, true);
 		findview();
 		initManager(savedInstanceState);
@@ -56,12 +57,13 @@ public class StandActivity extends BaseActivity implements OnClickListener,
 
 	private void inteViewPager() {
 		listViews = new ArrayList<Fragment>();
-		listViews.add(new StandRostrumActivity());
-		listViews.add(new StandNearByActivity());
-		listViews.add(new StandNewsActivity());
-		listViews.add(new StandBestHeatByActivity());
+		listViews.add(new StandRostrumFragment());
+		listViews.add(new StandNearByFragment());
+		listViews.add(new StandNewsFragment());
+		listViews.add(new StandBestHeatByFragment());
 		contentViewPager.setAdapter(new HomeViewPagerAdapter(
 				getSupportFragmentManager(), listViews));
+		contentViewPager.setCurrentItem(ROSTRUM);
 		setSelectBar(ROSTRUM);
 
 	}
@@ -209,8 +211,8 @@ public class StandActivity extends BaseActivity implements OnClickListener,
 	}
 
 	@Override
-	protected void onPause() {
-		super.onPause();
+	protected void onDestroy() {
+		super.onDestroy();
 		contentViewPager.clearOnPageChangeListeners();
 	}
 

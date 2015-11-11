@@ -118,8 +118,10 @@ public class FirstStartAppActivity extends Activity {
 
 					@Override
 					public void onClick(View v) {
-						IntentUtil.redirectToNextActivity(
-								FirstStartAppActivity.this, StandActivity.class);
+						IntentUtil
+								.redirectToNextActivity(
+										FirstStartAppActivity.this,
+										StandActivity.class);
 						FirstStartAppActivity.this.finish();
 					}
 				});
@@ -130,8 +132,8 @@ public class FirstStartAppActivity extends Activity {
 	}
 
 	@Override
-	protected void onPause() {
-		super.onPause();
+	protected void onDestroy() {
+		super.onDestroy();
 		mViewPager.clearOnPageChangeListeners();
 	}
 }

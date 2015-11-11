@@ -24,6 +24,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <!-- 允许使用震动 -->
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
 
     <supports-screens
         android:anyDensity="true"
@@ -85,30 +86,6 @@
             android:name="com.ifootball.app.activity.career.CareerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.NoTitle"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name="com.ifootball.app.activity.stand.StandRostrumActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.NoTitle"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name="com.ifootball.app.activity.stand.StandNearByActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.NoTitle"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name="com.ifootball.app.activity.stand.StandNewsActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.NoTitle"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name="com.ifootball.app.activity.stand.StandBestHeatByActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NoTitle"
             android:windowSoftInputMode="adjustPan|stateHidden" />

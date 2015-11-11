@@ -7,22 +7,26 @@ import com.ifootball.app.entity.CustomerInfo;
 import com.ifootball.app.entity.SettingsUtil;
 
 public class ExitAppUtil {
+	private static Context context;
 
 	/**
 	 * 退出程序
 	 */
-	public static void exit(Context context) {
+	public static void exit(final Context context) {
+
 		if (SettingsUtil.getConfirmWhenExit()) {
-			DialogUtil.getConfirmAlertDialog(context, "温馨提示", "确认离开跨境通吗？",
+			DialogUtil.getConfirmAlertDialog(context, "温馨提示", "确认离开吗？",
 					new DialogInterface.OnClickListener() {
 
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							exit();
+							isRemember();
+							AppManager.getAppManager().AppExit(context);
 						}
 					}).show();
 		} else {
-			exit();
+			isRemember();
+			AppManager.getAppManager().AppExit(context);
 		}
 	}
 
@@ -46,5 +50,6 @@ public class ExitAppUtil {
 		LoginStackUtil.finishAll();
 		System.exit(10);
 		android.os.Process.killProcess(android.os.Process.myPid());
+
 	}
 }
