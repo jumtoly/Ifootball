@@ -23,9 +23,8 @@ public class CareerActivity extends BaseActivity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-			ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-			am.restartPackage(getPackageName());
-			am.killBackgroundProcesses(getPackageName());
+			ExitAppUtil.exit(this);
+
 		}
 		return super.onKeyDown(keyCode, event);
 	}

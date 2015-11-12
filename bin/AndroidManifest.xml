@@ -89,6 +89,18 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NoTitle"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name="com.ifootball.app.activity.release.ReleaseImageActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NoTitle"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name="com.ifootball.app.activity.release.ReleaseTrendsActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NoTitle"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
     </application>
 
 </manifest>

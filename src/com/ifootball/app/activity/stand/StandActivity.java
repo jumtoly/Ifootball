@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.AnimationSet;
@@ -19,8 +20,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.ifootball.app.BaseActivity;
+import com.ifootball.app.activity.release.ReleaseImageActivity;
 import com.ifootball.app.framework.widget.NavigationHelper;
 import com.ifootball.app.util.AppManager;
+import com.ifootball.app.util.ExitAppUtil;
+import com.ifootball.app.util.IntentUtil;
 import com.myifootball.app.R;
 
 public class StandActivity extends BaseActivity implements OnClickListener,
@@ -44,8 +48,8 @@ public class StandActivity extends BaseActivity implements OnClickListener,
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		putContentView(R.layout.activity_home, "", NavigationHelper.STAND, true);
+
+		putContentView(R.layout.activity_stand, "", NavigationHelper.STAND, true);
 		findview();
 		initManager(savedInstanceState);
 		inteViewPager();
@@ -182,6 +186,8 @@ public class StandActivity extends BaseActivity implements OnClickListener,
 				switch (item) {
 				case 0:
 					//TODO 图片activity
+					IntentUtil.redirectToNextActivity(StandActivity.this,
+							ReleaseImageActivity.class);
 					break;
 
 				case 1:
@@ -234,5 +240,14 @@ public class StandActivity extends BaseActivity implements OnClickListener,
 			return listViews.get(arg0);
 		}
 
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+			ExitAppUtil.exit(this);
+
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 }

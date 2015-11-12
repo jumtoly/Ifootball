@@ -1,6 +1,7 @@
 package com.ifootball.app.framework.widget;
 
 import android.app.Activity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -36,6 +37,10 @@ public class CustomTitleManager {
 	public void setUp() {
 
 		if (!mNoTitle) {
+			LayoutInflater inflater = LayoutInflater.from(mActivity);
+			View view = inflater.inflate(R.layout.frm_custom_title, null);
+			int statusBarHeight = getStatusBarHeight();
+			view.setPadding(0, statusBarHeight, 0, 0);
 			mActivity.getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
 					R.layout.frm_custom_title);
 
@@ -49,6 +54,16 @@ public class CustomTitleManager {
 			mRightIconImageButton = (ImageButton) mActivity
 					.findViewById(R.id.btn_right_icon_btn);
 		}
+	}
+
+	private int getStatusBarHeight() {
+		int result = 0;
+		int resourceId = mActivity.getResources().getIdentifier(
+				"status_bar_height", "dimen", "android");
+		if (resourceId > 0) {
+			result = mActivity.getResources().getDimensionPixelSize(resourceId);
+		}
+		return result;
 	}
 
 	public void setTitle(String title) {
